@@ -1,7 +1,7 @@
 import os
 import subprocess
 import sys
-
+from pathlib import Path
 from contextlib import contextmanager
 from tempfile import mkdtemp
 from urllib.parse import urlparse
@@ -88,4 +88,4 @@ if __name__ == '__main__':
                                   'LD_LIBRARY_PATH': os.path.join(sys.prefix, 'lib'),
                               })
     replace_dir = str(list(Path('/tmp').glob('*/mecab-ko-dic*/tools'))[0])
-    subprocess.run(f'cp {DIRECTORY}/add-userdic.sh {replace_dir}', check=True)
+    subprocess.run(['cp', f'{DIRECTORY}/add-userdic.sh', f'{replace_dir}'] , check=True)

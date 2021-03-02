@@ -11,10 +11,9 @@ A python binding for mecab-ko with userdic feature
 - python3-dev
 
 ## Installation
-Using `pip`:
 ```
-# Use the -v option to check the progress of MeCab installation
-pip install -v python-mecab-ko
+pip install pybind11
+python setup.py install
 ```
 
 ## Usage
@@ -57,3 +56,29 @@ mecab.parse('즐거운 하루 보내세요!')
 ```
 
 ## Add custom dict
+
+### naive mecab
+```python
+from mecab import MeCab
+tokenizer = MeCab()
+
+tokenizer.pos('티존부위에 여드름이 많이 나요ㅠ')
+# [('티', 'NNG'), ('존부', 'NNG'), ('위', 'NNG'), ('에', 'JKB'), ('여드름', 'NNG'), ('이', 'JKS'), ('많이', 'MAG'), ('나', 'NP'), ('요', 'JX'), ('ㅠ', 'UNKNOWN')]
+```
+
+### update custom-dict
+- update custom-dict
+```python
+from mecab import update_custom_dictionary
+
+update_custom_dictionary('custom_dict.csv')
+
+# custom_dict.csv
+# https://bitbucket.org/eunjeon/mecab-ko-dic/src/df15a487444d88565ea18f8250330276497cc9b9/final/user-dic/README.md
+```
+- pos-tagging
+
+```python
+tokenizer.pos('티존부위에 여드름이 많이 나요ㅠ')
+# [('티존', 'NNG'), ('부위', 'NNG'), ('에', 'JKB'), ('여드름', 'NNG'), ('이', 'JKS'), ('많이', 'MAG'), ('나', 'NP'), ('요', 'JX'), ('ㅠ', 'UNKNOWN')]
+```
