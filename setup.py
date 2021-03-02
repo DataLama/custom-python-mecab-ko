@@ -126,15 +126,15 @@ with open('README.md', 'r', encoding='utf-8') as input_file:
     long_description = input_file.read()
 
 setup(
-    name='python-mecab-ko',
-    version='1.0.12',
-    url='https://github.com/jonghwanhyeon/python-mecab-ko',
-    author='Jonghwan Hyeon',
-    author_email='hyeon0145@gmail.com',
-    description='A python binding for mecab-ko',
+    name='custom-python-mecab-ko',
+    version='1.0.1',
+    url='https://github.com/DataLama/custom-python-mecab-ko',
+    author='Dongwook Kim',
+    author_email='kdw45215@gmail.com',
+    description='A python binding for mecab-ko with custom dictionary',
     long_description=long_description,
     long_description_content_type='text/markdown',
-    license='BSD',
+    license='MIT',
     keywords='mecab mecab-ko',
     classifiers=[
         'Development Status :: 4 - Beta',

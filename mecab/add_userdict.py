@@ -14,32 +14,33 @@ def change_directory(directory):
 
     os.chdir(original)
 
-def check_add_userdic_sh(root_dir):
-    """check add_userdic.sh
-    python-mecab-ko 패키지는 mecab 실행파일의 경로를 /usr/libexec/mecab으로 잡고 있음.
+# def check_add_userdic_sh(root_dir):
+#     """check add_userdic.sh
+#     python-mecab-ko 패키지는 mecab 실행파일의 경로를 /usr/libexec/mecab으로 잡고 있음.
     
-    반면, mecab-ko-dic은 mecab의 기본 실행 경로를 /usr/local/libexec/mecab으로 가정하고 동작함.
+#     반면, mecab-ko-dic은 mecab의 기본 실행 경로를 /usr/local/libexec/mecab으로 가정하고 동작함.
     
-    그러므로, python-mecab-ko 패키지와 add-userdic.sh을 함께 사용하기 위해서는 실행파일의 경로를 /usr/libexec/mecab으로 바꿔줘야됨.
-    """
-    fn = str(list(root_dir.glob('*/mecab-ko-dic*/tools/add-userdic.sh'))[0])
-    with open(fn) as f:
-        scripts = f.read().split('\n')
+#     그러므로, python-mecab-ko 패키지와 add-userdic.sh을 함께 사용하기 위해서는 실행파일의 경로를 /usr/libexec/mecab으로 바꿔줘야됨.
+#     """
+#     fn = str(list(root_dir.glob('*/mecab-ko-dic*/tools/add-userdic.sh'))[0])
+#     with open(fn) as f:
+#         scripts = f.read().split('\n')
     
-    for line in scripts:
-        if '/usr/libexec/mecab' in line:
-            print('tools/add-userdic.sh is already replaced.')
-            return 
-        
-    subprocess.Popen(f'cp {DIRECTORY}/add-userdic.sh {fn}', shell=True)
-    print('Replace tools/add-userdic.sh')
-    return
+#     for line in scripts:
+#         if '/usr/libexec/mecab' in line:
+#             print('tools/add-userdic.sh is already replaced.')
+#             return 
+    
+#     replace_dir = str(list(root_dir.glob('*/mecab-ko-dic*/tools'))[0])
+#     subprocess.run(f'cp {DIRECTORY}/add-userdic.sh {replace_dir}', check=True)
+#     print('Replace tools/add-userdic.sh')
+#     return
     
 
 def update_custom_dictionary(custom_path:str) -> None:
     # check add-userdic.sh
     root_dir = Path('/tmp')
-    check_add_userdic_sh(root_dir)
+#     check_add_userdic_sh(root_dir)
     
     # mv custom dictionary
     custom_path = os.path.abspath(custom_path)

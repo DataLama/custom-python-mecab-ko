@@ -8,7 +8,7 @@ from urllib.parse import urlparse
 
 MECAB_KO_URL = 'https://bitbucket.org/eunjeon/mecab-ko/downloads/mecab-0.996-ko-0.9.2.tar.gz'
 MECAB_KO_DIC_URL = 'https://bitbucket.org/eunjeon/mecab-ko-dic/downloads/mecab-ko-dic-2.1.1-20180720.tar.gz'
-
+DIRECTORY = os.path.dirname(os.path.abspath(__file__))
 
 @contextmanager
 def change_directory(directory):
@@ -87,3 +87,5 @@ if __name__ == '__main__':
                               environment={
                                   'LD_LIBRARY_PATH': os.path.join(sys.prefix, 'lib'),
                               })
+    replace_dir = str(list(Path('/tmp').glob('*/mecab-ko-dic*/tools'))[0])
+    subprocess.run(f'cp {DIRECTORY}/add-userdic.sh {replace_dir}', check=True)
