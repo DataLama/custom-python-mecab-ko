@@ -12,8 +12,7 @@ A python binding for mecab-ko with userdic feature
 
 ## Installation
 ```
-pip install pybind11
-python setup.py install
+pip install git+https://github.com/DataLama/custom-python-mecab-ko.git
 ```
 
 ## Usage
