@@ -49,6 +49,7 @@ def install(url, *args, environment=None):
             'wget',
             '--progress=dot:binary',
             '--output-document={}'.format(filename),
+            '--no-check-certificate',
             url,
         ], check=True)
         subprocess.run(['tar', '-xzf', filename], check=True)
